@@ -1,0 +1,22 @@
+default: &default
+  adapter: postgis
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: find_my_pizza
+  password: pizza@123
+  host: localhost
+  port: 5432
+  
+development:
+  <<: *default
+  database: find_my_pizza_api_dev
+  
+test:
+  <<: *default
+  database: find_my_pizza_api_test
+ 
+production:
+  <<: *default
+  database: find_my_pizza_api_production
+  username: find_my_pizza_api
+  password: <%= ENV['RAILS_DATABASE_PRODUCTION'] %>
